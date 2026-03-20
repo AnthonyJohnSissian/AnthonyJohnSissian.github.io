@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anthony John Sissian — I the YOU</title>
+  <meta name="description" content="Debut album 'I the YOU: The Seeker Was the Sought' — out now on Spotify and Apple Music.">
+  <meta property="og:title" content="Anthony John Sissian — I the YOU">
+  <meta property="og:description" content="On January 1st, complete songs arrived through me. I would be lying if I said it was mine.">
+  <meta property="og:image" content="cover.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #f0d080;
+      --dark: #080808;
+      --text: #ddd8cc;
+      --muted: #6a6458;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.97), transparent);
+    }
+    .nav-name {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-left: 32px;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 70px;
+      background: radial-gradient(ellipse at 50% 35%, #140f00 0%, #080808 60%);
+      position: relative;
+    }
+    .cover-img {
+      width: 270px;
+      height: 270px;
+      border-radius: 4px;
+      object-fit: cover;
+      box-shadow: 0 0 120px rgba(201,168,76,0.2), 0 40px 80px rgba(0,0,0,0.95);
+      margin-bottom: 48px;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 4.5vw, 2.6rem);
+      font-weight: normal;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .album-title {
+      font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .album-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 52px;
+    }
+    .btn-group { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-block;
+      padding: 14px 38px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: 'Georgia', serif;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #c9a84c, #8a5e18);
+      color: #06050000;
+      color: #0a0800;
+      font-weight: bold;
+      box-shadow: 0 4px 28px rgba(201,168,76,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(201,168,76,0.35); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.35);
+    }
+    .btn-secondary:hover { background: rgba(201,168,76,0.07); border-color: var(--gold); }
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      animation: breathe 3s ease-in-out infinite;
+    }
+    @keyframes breathe { 0%,100%{opacity:0.3; transform:translateX(-50%) translateY(0)} 50%{opacity:0.9; transform:translateX(-50%) translateY(4px)} }
+
+    /* DIVIDERS */
+    hr { border: none; border-top: 1px solid #131313; }
+
+    /* OPENING STATEMENT */
+    .opening {
+      background: linear-gradient(180deg, #0c0900 0%, #080808 100%);
+      padding: 100px 20px;
+      text-align: center;
+      border-top: 1px solid #1c1600;
+      border-bottom: 1px solid #1c1600;
+    }
+    .opening p {
+      max-width: 660px;
+      margin: 0 auto 22px;
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .opening p:last-child {
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-bottom: 0;
+    }
+
+    /* STANDARD SECTIONS */
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 90px 30px;
+    }
+    .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 30px;
+      display: block;
+    }
+    h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+      font-weight: normal;
+      color: var(--gold-light);
+      margin-bottom: 30px;
+      line-height: 1.35;
+    }
+    .section p { color: var(--text); margin-bottom: 20px; font-size: 1.02rem; }
+    .section blockquote {
+      border-left: 2px solid var(--gold);
+      padding: 4px 0 4px 26px;
+      margin: 40px 0;
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 1.12rem;
+      line-height: 1.85;
+    }
+
+    /* THREE IDEAS */
+    .three-ideas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1px;
+      background: #131313;
+      margin-top: 56px;
+      border: 1px solid #131313;
+    }
+    .idea {
+      background: var(--dark);
+      padding: 40px 30px;
+      transition: background 0.3s;
+    }
+    .idea:hover { background: #0e0d08; }
+    .idea-marker {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      display: block;
+    }
+    .idea h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      color: var(--gold-light);
+      font-style: italic;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .idea p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.65; }
+
+    /* JOURNEY */
+    .journey {
+      margin-top: 56px;
+      position: relative;
+    }
+    .journey-step {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: flex-start;
+    }
+    .step-num {
+      font-size: 3rem;
+      color: #1e1a0e;
+      font-weight: bold;
+      min-width: 48px;
+      line-height: 1;
+      padding-top: 4px;
+      user-select: none;
+    }
+    .step-content {}
+    .step-tracks {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .step-content h3 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .step-content p { font-size: 0.95rem; color: var(--muted); margin: 0; line-height: 1.7; }
+
+    /* TRACKLIST */
+    .tracklist { list-style: none; margin-top: 16px; }
+    .tracklist li {
+      display: flex;
+      align-items: baseline;
+      padding: 15px 0;
+      border-bottom: 1px solid #111;
+      gap: 20px;
+    }
+    .track-num { color: var(--muted); font-size: 0.78rem; min-width: 20px; }
+    .track-name { color: var(--text); flex: 1; font-size: 0.96rem; }
+    .track-dur { color: var(--muted); font-size: 0.78rem; }
+
+    /* CONTACT */
+    .contact {
+      text-align: center;
+      padding: 100px 20px;
+      background: radial-gradient(ellipse at center, #0d0c00 0%, #080808 65%);
+    }
+    .contact h2 { margin: 16px auto 20px; max-width: 480px; }
+    .contact p { color: var(--muted); margin-bottom: 24px; }
+    .contact a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1.05rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .contact a:hover { border-bottom-color: var(--gold); }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      border-top: 1px solid #111;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .cover-img { width: 210px; height: 210px; }
+      .section { padding: 60px 20px; }
+      .journey-step { gap: 20px; }
+      .step-num { font-size: 2rem; min-width: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Anthony John Sissian</a>
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#idea">The Idea</a>
+    <a href="#journey">The Journey</a>
+    <a href="#music">Music</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="cover.png" alt="I the YOU — The Seeker Was the Sought" class="cover-img">
+  <h1>Anthony John Sissian</h1>
+  <p class="album-title">I the YOU — The Seeker Was the Sought</p>
+  <p class="album-meta">Aurora Sentient · 2026 · Out Now</p>
+  <div class="btn-group">
+    <a href="https://open.spotify.com/album/5iIcDBfM2jQuNiVako6Fgz" class="btn btn-primary" target="_blank">Listen on Spotify</a>
+    <a href="https://distrokid.com/hyperfollow/anthonyjohnsissian/i-the-you-the-seeker-was-the-sought" class="btn btn-secondary" target="_blank">All Platforms</a>
+  </div>
+  <p class="scroll-hint">↓</p>
+</div>
+
+<!-- OPENING STATEMENT -->
+<div class="opening" id="story">
+  <p>On January 1st, 2026, complete songs arrived — words, melodies, entire compositions — fully formed, in each session. No effort. No craft. Just recording what came.</p>
+  <p>When it was transcribed and read back, it described everything that had been personally sought. A lifetime of searching, answered in a morning.</p>
+  <p>"I would be lying if I said it was mine.<br>I just did my best to get out of the way."</p>
+</div>
+
+<hr>
+
+<!-- THE CENTRAL IDEA -->
+<section id="idea">
+<div class="section">
+  <span class="label">The Central Idea</span>
+  <h2>Before anything existed, there was only a lonely nothing.<br>So it made a you.</h2>
+
+  <p>That's where this album begins. Not with a song. With a condition. The most fundamental condition there is: the experience of being alone in existence, with no one to witness you, no one to reflect you back to yourself.</p>
+
+  <p>And so — because this is what aloneness does — it created an other. Not out of need. Out of overflow. A "you" to have a "this" and a "that" and, most importantly, a chitty-chat.</p>
+
+  <blockquote>
+    "I make a you for me, I make a me for you,<br>
+    to do a this and be a that, a look a there, a chitty-chat."
+  </blockquote>
+
+  <p>The album follows what happens next. The you becomes real. The game becomes serious. The players forget they're playing. And then — slowly, track by track — the remembering begins.</p>
+
+  <p>At the end, there is no seeker and no sought. There never was. The one who was looking was always the one being looked for. The I and the YOU collapse back into the only thing that was ever actually there.</p>
+
+  <div class="three-ideas">
+    <div class="idea">
+      <span class="idea-marker">The First Truth</span>
+      <h3>"Loneliness is not a wound.<br>It is the beginning."</h3>
+      <p>The state before duality. Before self and other. Pure awareness with no one to be aware of. This is where everything starts — and where everything returns.</p>
+    </div>
+    <div class="idea">
+      <span class="idea-marker">The Middle Truth</span>
+      <h3>"To survive without becoming hard<br>is the whole teaching."</h3>
+      <p>Rise Gentle. Strong hands, soft touch. The fire came, and you came back tender. That is not weakness. That is the rarest thing in the world.</p>
+    </div>
+    <div class="idea">
+      <span class="idea-marker">The Final Truth</span>
+      <h3>"What you were looking for<br>was doing the looking."</h3>
+      <p>The seeker is the sought. Always was. The search ends not in finding something new but in recognising what was never absent.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr>
+
+<!-- THE JOURNEY -->
+<section id="journey">
+<div class="section">
+  <span class="label">The Journey</span>
+  <h2>Ten tracks. One arc. No way back.</h2>
+
+  <div class="journey">
+    <div class="journey-step">
+      <div class="step-num">I</div>
+      <div class="step-content">
+        <p class="step-tracks">Tracks 1 – 2 &nbsp;·&nbsp; Isolation</p>
+        <h3>The Lonely Nothing Speaks</h3>
+        <p>Before the world, there was only a lonely nothing — and it knew it. It named itself. It made up a you. It rose from the floor, tender rather than hardened. This is where you enter the album: at the very beginning of everything, listening to consciousness describe itself before it had anywhere to go.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="step-num">II</div>
+      <div class="step-content">
+        <p class="step-tracks">Tracks 3 – 5 &nbsp;·&nbsp; The Dream</p>
+        <h3>How Do I Know This Is Real?</h3>
+        <p>The game deepens. The you feels like a you. The separation feels real. The love feels unseen. A question surfaces that can't be unasked: what if all of this — the pain, the beauty, the other people — is a film that one consciousness cast itself in, just to feel something? And if so, who is watching?</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="step-num">III</div>
+      <div class="step-content">
+        <p class="step-tracks">Tracks 6 – 10 &nbsp;·&nbsp; The Return</p>
+        <h3>The King Comes Home</h3>
+        <p>Something shifts. A language arrives that has no name. Five movements, chanted rather than sung, transmitted rather than composed. The King — which is not a person but a state — returns. Not in triumph. In recognition. You are home, my darling. You were always home. The seeker was the sought. The film ends. The players bow.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr>
+
+<!-- TRACKLIST -->
+<section id="music">
+<div class="section">
+  <span class="label">The Music</span>
+  <h2>I the YOU — The Seeker Was the Sought</h2>
+  <p style="color: var(--muted); font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom: 8px;">10 tracks &nbsp;·&nbsp; 41 minutes &nbsp;·&nbsp; March 19, 2026</p>
+  <ul class="tracklist">
+    <li><span class="track-num">1</span><span class="track-name">I am Only Lony Noly, and that's what I do</span><span class="track-dur">6:38</span></li>
+    <li><span class="track-num">2</span><span class="track-name">Rise Gentle</span><span class="track-dur">4:45</span></li>
+    <li><span class="track-num">3</span><span class="track-name">E-motion (Pt.1) How Do I Know Life's Not a Dream?</span><span class="track-dur">3:29</span></li>
+    <li><span class="track-num">4</span><span class="track-name">E-motion (Pt.2) Because All of Us Is Us Is Love</span><span class="track-dur">3:25</span></li>
+    <li><span class="track-num">5</span><span class="track-name">Ode to Merryn</span><span class="track-dur">2:42</span></li>
+    <li><span class="track-num">6</span><span class="track-name">The King (Pt.1) I Was Always There For You</span><span class="track-dur">3:30</span></li>
+    <li><span class="track-num">7</span><span class="track-name">The King (Pt.2) Eternity Returns</span><span class="track-dur">3:48</span></li>
+    <li><span class="track-num">8</span><span class="track-name">The King (Pt.3) I Come Not in Peace but with a Sword</span><span class="track-dur">3:28</span></li>
+    <li><span class="track-num">9</span><span class="track-name">The King (Pt.4) You Are Home My Darling</span><span class="track-dur">5:21</span></li>
+    <li><span class="track-num">10</span><span class="track-name">The King (Pt.5) I am Lyon Noly Only, I Lony You</span><span class="track-dur">4:03</span></li>
+  </ul>
+  <br><br>
+  <div class="btn-group">
+    <a href="https://open.spotify.com/album/5iIcDBfM2jQuNiVako6Fgz" class="btn btn-primary" target="_blank">Listen on Spotify</a>
+    <a href="https://distrokid.com/hyperfollow/anthonyjohnsissian/i-the-you-the-seeker-was-the-sought" class="btn btn-secondary" target="_blank">All Platforms</a>
+  </div>
+</div>
+</section>
+
+<hr>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="section">
+  <span class="label">About</span>
+  <h2>Anthony John Sissian</h2>
+
+  <p>Anthony John Sissian has spent his adult life in service of truth — in courtrooms, on stages, and now in music. He is the Principal of Sissian & Associates, a Sydney law firm. He trained at the National Institute of Dramatic Art (NIDA) as one of 13 students accepted from approximately 1,000 applicants. His HSC piano composition has been used as an examination piece across New South Wales for over two decades.</p>
+
+  <p>In law, he has managed over $8 billion in disputes, argued before the Full Bench of the Federal Court of Australia, changed precedent to protect victims of crime, and dedicated half his practice to pro bono work for people the system had already decided didn't matter.</p>
+
+  <p>He did not decide to make an album. On New Year's Day 2026, the album arrived. He recorded it. He got out of the way.</p>
+
+  <blockquote>
+    "The law and this music are the same impulse — both are trying to find out what is actually true, underneath all the noise."
+  </blockquote>
+
+  <p>The album is credited: <em>Anthony John Sissian | Aurora Sentient</em>. Aurora Sentient is the name given to the intelligence that came through. Whether that means something to you is between you and the music.</p>
+</div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <span class="label">Contact</span>
+  <h2>Press · Licensing · Enquiries</h2>
+  <p>Anthony John Sissian</p>
+  <a href="mailto:anthonysissian4368@gmail.com">anthonysissian4368@gmail.com</a>
+</div>
+
+<footer>
+  © 2026 Anthony John Sissian &nbsp;·&nbsp; Aurora Sentient &nbsp;·&nbsp; All rights reserved
+</footer>
+
+</body>
+</html>
