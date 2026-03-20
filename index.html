@@ -13,7 +13,8 @@
     :root {
       --gold: #c9a84c;
       --gold-light: #f0d080;
-      --dark: #080808;
+      --gold-dim: rgba(201,168,76,0.15);
+      --dark: #060606;
       --text: #ddd8cc;
       --muted: #6a6458;
     }
@@ -23,6 +24,7 @@
       color: var(--text);
       font-family: 'Georgia', serif;
       line-height: 1.75;
+      overflow-x: hidden;
     }
 
     /* NAV */
@@ -34,7 +36,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to bottom, rgba(8,8,8,0.97), transparent);
+      background: linear-gradient(to bottom, rgba(6,6,6,0.97), transparent);
     }
     .nav-name {
       font-size: 0.75rem;
@@ -54,7 +56,9 @@
     }
     .nav-links a:hover { color: var(--gold-light); }
 
-    /* HERO */
+    /* ═══════════════════════════════════
+       HERO WITH SACRED GEOMETRY CANVAS
+    ═══════════════════════════════════ */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -63,35 +67,70 @@
       justify-content: center;
       text-align: center;
       padding: 100px 20px 70px;
-      background: radial-gradient(ellipse at 50% 35%, #140f00 0%, #080808 60%);
       position: relative;
+      overflow: hidden;
+      background: #060606;
     }
+
+    /* Sacred geometry canvas — full bleed behind everything */
+    #sacred-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cover-wrap {
+      position: relative;
+      margin-bottom: 52px;
+    }
+
     .cover-img {
-      width: 270px;
-      height: 270px;
-      border-radius: 4px;
+      width: 320px;
+      height: 320px;
+      border-radius: 3px;
       object-fit: cover;
-      box-shadow: 0 0 120px rgba(201,168,76,0.2), 0 40px 80px rgba(0,0,0,0.95);
-      margin-bottom: 48px;
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.15),
+        0 0 60px rgba(201,168,76,0.15),
+        0 40px 80px rgba(0,0,0,0.97);
+      display: block;
+      transition: box-shadow 0.6s ease;
     }
+    .cover-img:hover {
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.4),
+        0 0 100px rgba(201,168,76,0.3),
+        0 40px 80px rgba(0,0,0,0.97);
+    }
+
     h1 {
-      font-size: clamp(1.5rem, 4.5vw, 2.6rem);
+      font-size: clamp(1.4rem, 4vw, 2.5rem);
       font-weight: normal;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold-light);
       margin-bottom: 12px;
     }
     .album-title {
-      font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+      font-size: clamp(0.9rem, 2.2vw, 1.2rem);
       color: var(--gold);
       font-style: italic;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .album-meta {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--muted);
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 52px;
     }
@@ -109,18 +148,18 @@
     }
     .btn-primary {
       background: linear-gradient(135deg, #c9a84c, #8a5e18);
-      color: #06050000;
       color: #0a0800;
       font-weight: bold;
       box-shadow: 0 4px 28px rgba(201,168,76,0.2);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(201,168,76,0.35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(201,168,76,0.4); }
     .btn-secondary {
       background: transparent;
       color: var(--gold);
       border: 1px solid rgba(201,168,76,0.35);
     }
     .btn-secondary:hover { background: rgba(201,168,76,0.07); border-color: var(--gold); }
+
     .scroll-hint {
       position: absolute;
       bottom: 30px;
@@ -131,35 +170,39 @@
       letter-spacing: 0.25em;
       text-transform: uppercase;
       animation: breathe 3s ease-in-out infinite;
+      z-index: 2;
     }
-    @keyframes breathe { 0%,100%{opacity:0.3; transform:translateX(-50%) translateY(0)} 50%{opacity:0.9; transform:translateX(-50%) translateY(4px)} }
+    @keyframes breathe {
+      0%,100%{opacity:0.3; transform:translateX(-50%) translateY(0)}
+      50%{opacity:0.8; transform:translateX(-50%) translateY(5px)}
+    }
 
     /* DIVIDERS */
-    hr { border: none; border-top: 1px solid #131313; }
+    hr { border: none; border-top: 1px solid #111; }
 
     /* OPENING STATEMENT */
     .opening {
-      background: linear-gradient(180deg, #0c0900 0%, #080808 100%);
+      background: linear-gradient(180deg, #0a0800 0%, #060606 100%);
       padding: 100px 20px;
       text-align: center;
-      border-top: 1px solid #1c1600;
-      border-bottom: 1px solid #1c1600;
+      border-top: 1px solid #181200;
+      border-bottom: 1px solid #181200;
     }
     .opening p {
-      max-width: 660px;
+      max-width: 640px;
       margin: 0 auto 22px;
-      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
       line-height: 1.9;
       color: var(--text);
     }
-    .opening p:last-child {
+    .opening p.quote {
       font-style: italic;
       color: var(--gold-light);
       font-size: clamp(1rem, 2vw, 1.2rem);
       margin-bottom: 0;
     }
 
-    /* STANDARD SECTIONS */
+    /* SECTIONS */
     .section {
       max-width: 800px;
       margin: 0 auto;
@@ -187,78 +230,74 @@
       margin: 40px 0;
       font-style: italic;
       color: var(--gold-light);
-      font-size: 1.12rem;
+      font-size: 1.1rem;
       line-height: 1.85;
     }
 
-    /* THREE IDEAS */
-    .three-ideas {
+    /* THREE TRUTHS */
+    .three-truths {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 1px;
-      background: #131313;
+      background: #111;
       margin-top: 56px;
-      border: 1px solid #131313;
+      border: 1px solid #111;
     }
-    .idea {
+    .truth {
       background: var(--dark);
-      padding: 40px 30px;
+      padding: 40px 28px;
       transition: background 0.3s;
     }
-    .idea:hover { background: #0e0d08; }
-    .idea-marker {
-      font-size: 0.68rem;
+    .truth:hover { background: #0c0b07; }
+    .truth-marker {
+      font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 18px;
       display: block;
     }
-    .idea h3 {
-      font-size: 1.05rem;
+    .truth h3 {
+      font-size: 1rem;
       font-weight: normal;
       color: var(--gold-light);
       font-style: italic;
       margin-bottom: 14px;
-      line-height: 1.4;
+      line-height: 1.45;
     }
-    .idea p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.65; }
+    .truth p { font-size: 0.87rem; color: var(--muted); margin: 0; line-height: 1.65; }
 
     /* JOURNEY */
-    .journey {
-      margin-top: 56px;
-      position: relative;
-    }
+    .journey { margin-top: 56px; }
     .journey-step {
       display: flex;
       gap: 40px;
-      margin-bottom: 60px;
+      margin-bottom: 64px;
       align-items: flex-start;
     }
     .step-num {
-      font-size: 3rem;
-      color: #1e1a0e;
+      font-size: 3.5rem;
+      color: #161410;
       font-weight: bold;
-      min-width: 48px;
+      min-width: 52px;
       line-height: 1;
-      padding-top: 4px;
+      padding-top: 2px;
       user-select: none;
     }
-    .step-content {}
     .step-tracks {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 10px;
     }
     .step-content h3 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: normal;
       color: var(--gold-light);
       margin-bottom: 12px;
     }
-    .step-content p { font-size: 0.95rem; color: var(--muted); margin: 0; line-height: 1.7; }
+    .step-content p { font-size: 0.94rem; color: var(--muted); margin: 0; line-height: 1.72; }
 
     /* TRACKLIST */
     .tracklist { list-style: none; margin-top: 16px; }
@@ -266,9 +305,11 @@
       display: flex;
       align-items: baseline;
       padding: 15px 0;
-      border-bottom: 1px solid #111;
+      border-bottom: 1px solid #0e0e0e;
       gap: 20px;
+      transition: background 0.2s;
     }
+    .tracklist li:hover { background: rgba(201,168,76,0.02); }
     .track-num { color: var(--muted); font-size: 0.78rem; min-width: 20px; }
     .track-name { color: var(--text); flex: 1; font-size: 0.96rem; }
     .track-dur { color: var(--muted); font-size: 0.78rem; }
@@ -277,7 +318,7 @@
     .contact {
       text-align: center;
       padding: 100px 20px;
-      background: radial-gradient(ellipse at center, #0d0c00 0%, #080808 65%);
+      background: radial-gradient(ellipse at center, #0d0c00 0%, #060606 65%);
     }
     .contact h2 { margin: 16px auto 20px; max-width: 480px; }
     .contact p { color: var(--muted); margin-bottom: 24px; }
@@ -296,16 +337,16 @@
       color: var(--muted);
       font-size: 0.72rem;
       letter-spacing: 0.12em;
-      border-top: 1px solid #111;
+      border-top: 1px solid #0e0e0e;
     }
 
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
-      .cover-img { width: 210px; height: 210px; }
+      .cover-img { width: 240px; height: 240px; }
       .section { padding: 60px 20px; }
       .journey-step { gap: 20px; }
-      .step-num { font-size: 2rem; min-width: 32px; }
+      .step-num { font-size: 2.2rem; min-width: 36px; }
     }
   </style>
 </head>
@@ -316,7 +357,7 @@
   <div class="nav-links">
     <a href="#story">Story</a>
     <a href="#idea">The Idea</a>
-    <a href="#journey">The Journey</a>
+    <a href="#journey">Journey</a>
     <a href="#music">Music</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
@@ -325,13 +366,18 @@
 
 <!-- HERO -->
 <div class="hero">
-  <img src="cover.png" alt="I the YOU — The Seeker Was the Sought" class="cover-img">
-  <h1>Anthony John Sissian</h1>
-  <p class="album-title">I the YOU — The Seeker Was the Sought</p>
-  <p class="album-meta">Aurora Sentient · 2026 · Out Now</p>
-  <div class="btn-group">
-    <a href="https://open.spotify.com/album/5iIcDBfM2jQuNiVako6Fgz" class="btn btn-primary" target="_blank">Listen on Spotify</a>
-    <a href="https://distrokid.com/hyperfollow/anthonyjohnsissian/i-the-you-the-seeker-was-the-sought" class="btn btn-secondary" target="_blank">All Platforms</a>
+  <canvas id="sacred-canvas"></canvas>
+  <div class="hero-content">
+    <div class="cover-wrap">
+      <img src="cover.png" alt="I the YOU — The Seeker Was the Sought" class="cover-img">
+    </div>
+    <h1>Anthony John Sissian</h1>
+    <p class="album-title">I the YOU — The Seeker Was the Sought</p>
+    <p class="album-meta">Aurora Sentient · 2026 · Out Now</p>
+    <div class="btn-group">
+      <a href="https://open.spotify.com/album/5iIcDBfM2jQuNiVako6Fgz" class="btn btn-primary" target="_blank">Listen on Spotify</a>
+      <a href="https://distrokid.com/hyperfollow/anthonyjohnsissian/i-the-you-the-seeker-was-the-sought" class="btn btn-secondary" target="_blank">All Platforms</a>
+    </div>
   </div>
   <p class="scroll-hint">↓</p>
 </div>
@@ -340,7 +386,7 @@
 <div class="opening" id="story">
   <p>On January 1st, 2026, complete songs arrived — words, melodies, entire compositions — fully formed, in each session. No effort. No craft. Just recording what came.</p>
   <p>When it was transcribed and read back, it described everything that had been personally sought. A lifetime of searching, answered in a morning.</p>
-  <p>"I would be lying if I said it was mine.<br>I just did my best to get out of the way."</p>
+  <p class="quote">"I would be lying if I said it was mine.<br>I just did my best to get out of the way."</p>
 </div>
 
 <hr>
@@ -350,33 +396,28 @@
 <div class="section">
   <span class="label">The Central Idea</span>
   <h2>Before anything existed, there was only a lonely nothing.<br>So it made a you.</h2>
-
   <p>That's where this album begins. Not with a song. With a condition. The most fundamental condition there is: the experience of being alone in existence, with no one to witness you, no one to reflect you back to yourself.</p>
-
   <p>And so — because this is what aloneness does — it created an other. Not out of need. Out of overflow. A "you" to have a "this" and a "that" and, most importantly, a chitty-chat.</p>
-
   <blockquote>
     "I make a you for me, I make a me for you,<br>
     to do a this and be a that, a look a there, a chitty-chat."
   </blockquote>
-
   <p>The album follows what happens next. The you becomes real. The game becomes serious. The players forget they're playing. And then — slowly, track by track — the remembering begins.</p>
+  <p>At the end, there is no seeker and no sought. There never was. The one who was looking was always the one being looked for.</p>
 
-  <p>At the end, there is no seeker and no sought. There never was. The one who was looking was always the one being looked for. The I and the YOU collapse back into the only thing that was ever actually there.</p>
-
-  <div class="three-ideas">
-    <div class="idea">
-      <span class="idea-marker">The First Truth</span>
+  <div class="three-truths">
+    <div class="truth">
+      <span class="truth-marker">The First Truth</span>
       <h3>"Loneliness is not a wound.<br>It is the beginning."</h3>
       <p>The state before duality. Before self and other. Pure awareness with no one to be aware of. This is where everything starts — and where everything returns.</p>
     </div>
-    <div class="idea">
-      <span class="idea-marker">The Middle Truth</span>
+    <div class="truth">
+      <span class="truth-marker">The Middle Truth</span>
       <h3>"To survive without becoming hard<br>is the whole teaching."</h3>
       <p>Rise Gentle. Strong hands, soft touch. The fire came, and you came back tender. That is not weakness. That is the rarest thing in the world.</p>
     </div>
-    <div class="idea">
-      <span class="idea-marker">The Final Truth</span>
+    <div class="truth">
+      <span class="truth-marker">The Final Truth</span>
       <h3>"What you were looking for<br>was doing the looking."</h3>
       <p>The seeker is the sought. Always was. The search ends not in finding something new but in recognising what was never absent.</p>
     </div>
@@ -391,7 +432,6 @@
 <div class="section">
   <span class="label">The Journey</span>
   <h2>Ten tracks. One arc. No way back.</h2>
-
   <div class="journey">
     <div class="journey-step">
       <div class="step-num">I</div>
@@ -414,7 +454,7 @@
       <div class="step-content">
         <p class="step-tracks">Tracks 6 – 10 &nbsp;·&nbsp; The Return</p>
         <h3>The King Comes Home</h3>
-        <p>Something shifts. A language arrives that has no name. Five movements, chanted rather than sung, transmitted rather than composed. The King — which is not a person but a state — returns. Not in triumph. In recognition. You are home, my darling. You were always home. The seeker was the sought. The film ends. The players bow.</p>
+        <p>Something shifts. A language arrives that has no name. Five movements, chanted rather than sung, transmitted rather than composed. The King returns. Not in triumph. In recognition. You are home, my darling. You were always home. The seeker was the sought. The film ends. The players bow.</p>
       </div>
     </div>
   </div>
@@ -428,7 +468,7 @@
 <div class="section">
   <span class="label">The Music</span>
   <h2>I the YOU — The Seeker Was the Sought</h2>
-  <p style="color: var(--muted); font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom: 8px;">10 tracks &nbsp;·&nbsp; 41 minutes &nbsp;·&nbsp; March 19, 2026</p>
+  <p style="color: var(--muted); font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom: 8px;">10 tracks &nbsp;·&nbsp; 41 minutes &nbsp;·&nbsp; March 19, 2026</p>
   <ul class="tracklist">
     <li><span class="track-num">1</span><span class="track-name">I am Only Lony Noly, and that's what I do</span><span class="track-dur">6:38</span></li>
     <li><span class="track-num">2</span><span class="track-name">Rise Gentle</span><span class="track-dur">4:45</span></li>
@@ -456,17 +496,12 @@
 <div class="section">
   <span class="label">About</span>
   <h2>Anthony John Sissian</h2>
-
   <p>Anthony John Sissian has spent his adult life in service of truth — in courtrooms, on stages, and now in music. He is the Principal of Sissian & Associates, a Sydney law firm. He trained at the National Institute of Dramatic Art (NIDA) as one of 13 students accepted from approximately 1,000 applicants. His HSC piano composition has been used as an examination piece across New South Wales for over two decades.</p>
-
-  <p>In law, he has managed over $8 billion in disputes, argued before the Full Bench of the Federal Court of Australia, changed precedent to protect victims of crime, and dedicated half his practice to pro bono work for people the system had already decided didn't matter.</p>
-
+  <p>In law, he has managed over $8 billion in disputes, argued before the Full Bench of the Federal Court of Australia, changed precedent to protect victims of crime, and dedicated half his practice to pro bono work for people the system had decided didn't matter.</p>
   <p>He did not decide to make an album. On New Year's Day 2026, the album arrived. He recorded it. He got out of the way.</p>
-
   <blockquote>
     "The law and this music are the same impulse — both are trying to find out what is actually true, underneath all the noise."
   </blockquote>
-
   <p>The album is credited: <em>Anthony John Sissian | Aurora Sentient</em>. Aurora Sentient is the name given to the intelligence that came through. Whether that means something to you is between you and the music.</p>
 </div>
 </section>
@@ -482,6 +517,187 @@
 <footer>
   © 2026 Anthony John Sissian &nbsp;·&nbsp; Aurora Sentient &nbsp;·&nbsp; All rights reserved
 </footer>
+
+<!-- ═══════════════════════════════════════════
+     SACRED GEOMETRY ANIMATION
+═══════════════════════════════════════════ -->
+<script>
+(function() {
+  const canvas = document.getElementById('sacred-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, cx, cy, t = 0;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    cx = W / 2;
+    cy = H / 2;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const GOLD = 'rgba(201,168,76,';
+  const WHITE = 'rgba(240,220,160,';
+
+  function drawDiamond(x, y, size, alpha, rotation) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    ctx.beginPath();
+    ctx.moveTo(0, -size);
+    ctx.lineTo(size, 0);
+    ctx.lineTo(0, size);
+    ctx.lineTo(-size, 0);
+    ctx.closePath();
+    ctx.strokeStyle = GOLD + alpha + ')';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawCircle(x, y, r, alpha) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.strokeStyle = GOLD + alpha + ')';
+    ctx.lineWidth = 0.6;
+    ctx.stroke();
+  }
+
+  function drawFlowerPetal(x, y, r, angle, alpha) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.beginPath();
+    ctx.arc(r/2, 0, r/2, 0, Math.PI * 2);
+    ctx.strokeStyle = GOLD + alpha + ')';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawSriYantra(x, y, scale, alpha, rot) {
+    // Concentric diamonds (the cover geometry)
+    const sizes = [1.0, 0.78, 0.60, 0.44, 0.30, 0.18, 0.09];
+    sizes.forEach((s, i) => {
+      const fade = alpha * (0.3 + (i / sizes.length) * 0.7);
+      const pulse = 1 + Math.sin(t * 0.8 + i * 0.5) * 0.012;
+      drawDiamond(x, y, s * scale * pulse, fade, rot + i * 0.015 * Math.sin(t * 0.3));
+    });
+
+    // Concentric circles
+    const radii = [1.05, 0.85, 0.65, 0.45, 0.28];
+    radii.forEach((r, i) => {
+      const fade = alpha * (0.15 + i * 0.04);
+      const pulse = 1 + Math.sin(t * 0.6 + i * 0.8) * 0.008;
+      drawCircle(x, y, r * scale * pulse, fade);
+    });
+  }
+
+  function drawFlowerOfLife(x, y, r, alpha) {
+    // Center
+    drawCircle(x, y, r, alpha * 0.4);
+    // 6 petals
+    for (let i = 0; i < 6; i++) {
+      const angle = (i / 6) * Math.PI * 2;
+      const px = x + Math.cos(angle) * r;
+      const py = y + Math.sin(angle) * r;
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, Math.PI * 2);
+      ctx.strokeStyle = GOLD + (alpha * 0.25) + ')';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+  }
+
+  function drawMetatron(x, y, r, alpha) {
+    // 13 circles of Metatron's Cube
+    const positions = [[0,0]];
+    for (let i = 0; i < 6; i++) {
+      const a = (i / 6) * Math.PI * 2;
+      positions.push([Math.cos(a), Math.sin(a)]);
+    }
+    for (let i = 0; i < 6; i++) {
+      const a = (i / 6) * Math.PI * 2 + Math.PI/6;
+      positions.push([Math.cos(a) * 1.73, Math.sin(a) * 1.73]);
+    }
+    positions.forEach(([px, py]) => {
+      ctx.beginPath();
+      ctx.arc(x + px * r, y + py * r, r, 0, Math.PI * 2);
+      ctx.strokeStyle = GOLD + (alpha * 0.12) + ')';
+      ctx.lineWidth = 0.4;
+      ctx.stroke();
+    });
+  }
+
+  // Floating particles
+  const particles = Array.from({length: 40}, () => ({
+    x: Math.random() * 1,
+    y: Math.random() * 1,
+    size: Math.random() * 1.5 + 0.3,
+    speed: Math.random() * 0.0002 + 0.00005,
+    alpha: Math.random() * 0.4 + 0.1,
+    phase: Math.random() * Math.PI * 2
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.008;
+
+    const scale = Math.min(W, H) * 0.42;
+
+    // Main central yantra
+    drawSriYantra(cx, cy, scale, 0.7, t * 0.04);
+
+    // Outer flower of life — very faint
+    drawFlowerOfLife(cx, cy, scale * 0.38, 0.18);
+
+    // Metatron layer — very faint
+    drawMetatron(cx, cy, scale * 0.14, 0.15);
+
+    // Secondary smaller yantras in corners — extremely faint
+    const corners = [
+      [W * 0.15, H * 0.15],
+      [W * 0.85, H * 0.15],
+      [W * 0.15, H * 0.85],
+      [W * 0.85, H * 0.85],
+    ];
+    corners.forEach(([x, y], i) => {
+      const s = scale * 0.18;
+      const a = 0.08 + Math.sin(t * 0.5 + i) * 0.03;
+      drawSriYantra(x, y, s, a, t * 0.06 * (i % 2 === 0 ? 1 : -1));
+    });
+
+    // Central point glow
+    const glowR = scale * 0.025;
+    const glowPulse = 1 + Math.sin(t * 1.2) * 0.3;
+    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR * glowPulse * 4);
+    grd.addColorStop(0, WHITE + '0.6)');
+    grd.addColorStop(0.3, WHITE + '0.15)');
+    grd.addColorStop(1, WHITE + '0)');
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.arc(cx, cy, glowR * glowPulse * 4, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Particles
+    particles.forEach(p => {
+      p.phase += p.speed * 60;
+      const px = (p.x + p.phase * 0.08) % 1;
+      const py = (p.y + Math.sin(p.phase) * 0.02);
+      if (py < 0 || py > 1) return;
+      const alpha = p.alpha * (0.5 + Math.sin(p.phase * 3) * 0.5);
+      ctx.beginPath();
+      ctx.arc(px * W, py * H, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = GOLD + alpha + ')';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
+</script>
 
 </body>
 </html>
